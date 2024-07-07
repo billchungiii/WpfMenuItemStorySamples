@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace WpfMenuItemStorySamples
+namespace WpfMenuItemStorySample001
 {
     /// <summary>
     /// Interaction logic for App.xaml
