@@ -3,10 +3,55 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:WpfMenuItemStorySample003"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContextMenuOpening">
+            <i:InvokeCommandAction Command="{Binding MenuOpeningCommand}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="ContextMenuClosing">
+            <i:InvokeCommandAction Command="{Binding MenuClosingCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>    
+    <Window.ContextMenu>
+        <ContextMenu ItemsSource="{Binding MenuItems}" x:Name="contextMenu">
+            <ContextMenu.Resources >
+                <HierarchicalDataTemplate ItemsSource="{Binding MenuItems}" DataType="{x:Type local:MenuItemViewModel}">
+                    <TextBlock Text="{Binding Header}"/>
+                </HierarchicalDataTemplate>
+            </ContextMenu.Resources>
+            <ContextMenu.ItemContainerStyle>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Command" Value="{Binding Command}"/>
+                    <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+                </Style>
+            </ContextMenu.ItemContainerStyle>
+        </ContextMenu>
+    </Window.ContextMenu>
+   
     <Grid>
-
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="LightSteelBlue" x:Name="lightSteelBlueBorder" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding BorderLoadedCommand}" CommandParameter="{Binding ElementName=lightSteelBlueBorder}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Border>
+        <Border Background="SpringGreen" Grid.Row="1" x:Name="springGreenBorder">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding BorderLoadedCommand}"  CommandParameter="{Binding ElementName=springGreenBorder}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Border>
     </Grid>
 </Window>

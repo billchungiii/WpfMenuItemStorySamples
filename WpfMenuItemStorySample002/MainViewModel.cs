@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace WpfMenuItemStorySample002
 {
-    public class MainViewModel
+    public class MainViewModel : NotifyPropertyBase
     {
         public MainViewModel()
         {
@@ -21,7 +21,7 @@ namespace WpfMenuItemStorySample002
         public ObservableCollection<MenuItemViewModel> Items
         {
             get => _items;
-            set => _items = value;
+            set => SetProperty(ref _items , value);
         }
 
 
