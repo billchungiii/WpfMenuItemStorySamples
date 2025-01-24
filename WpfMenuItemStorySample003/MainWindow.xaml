@@ -32,8 +32,7 @@
                 </Style>
             </ContextMenu.ItemContainerStyle>
         </ContextMenu>
-    </Window.ContextMenu>
-   
+    </Window.ContextMenu>   
     <Grid>
         <Grid.RowDefinitions >
             <RowDefinition Height="*"/>
