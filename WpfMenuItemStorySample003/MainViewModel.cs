@@ -57,8 +57,6 @@ namespace WpfMenuItemStorySample003
                                 }
                             }
                         }
-
-
                     });
                 }
                 return _menuOpeningCommand;
@@ -204,7 +202,5 @@ namespace WpfMenuItemStorySample003
             get => _menuItems;
             set => SetProperty(ref _menuItems, value);
         }
-
-
     }
 }
